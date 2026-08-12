@@ -1,46 +1,12 @@
 <script setup lang="ts">
     import ButtonIcon from '@/components/molecules/buttons/ButtonIcon.vue'
     import ButtonIconText from '@/components/molecules/buttons/ButtonIconText.vue'
+    import { options } from '@/data/menu'
     import { ref } from 'vue'
 
     const companyName = ref<string>(import.meta.env.VITE_APP_NAME_SHORT)
     const sidebarOpen = ref<boolean>(true)
     const isMinimized = ref<boolean>(false)
-    const options = [
-        {
-            name: 'Tema',
-            icon: 'fa-solid fa-circle-half-stroke',
-            href: '#',
-            current: false,
-        },
-        {
-            name: 'Inicio',
-            icon: 'fa-solid fa-house',
-            href: '#',
-            current: false,
-        },
-        {
-            name: 'Fuentes',
-            icon: 'fa-solid fa-font',
-            href: '#',
-            current: false,
-        },
-        {
-            name: 'Colores',
-            icon: 'fa-solid fa-palette',
-            href: '#',
-        },
-        {
-            name: 'Secciones',
-            icon: 'fa-solid fa-list',
-            href: '#',
-        },
-        {
-            name: 'Descargar',
-            icon: 'fa-solid fa-file-pdf',
-            href: '#',
-        },
-    ]
 </script>
 
 <template>
@@ -48,7 +14,7 @@
     <aside
         v-if="sidebarOpen"
         :class="[
-            'bg-surface mx-4 my-4 rounded-2xl border border-primary-border fixed inset-y-0 left-0 z-50 flex flex-col transition-all duration-300 lg:translate-x-0',
+            'bg-surface m-4 rounded-2xl border border-primary-border sticky top-4 h-[calc(100vh-2rem)] shrink-0 z-40 flex flex-col transition-all duration-300',
             isMinimized ? 'w-20' : 'w-48'
         ]"
     >
@@ -94,7 +60,7 @@
                 </li>
             </ul>
         </nav>
-        <!-- User -->
+        <!-- User
         <div class="p-4">
             <button
                 type="button"
@@ -115,6 +81,7 @@
 
                 <i v-if="!isMinimized" class="fa-solid fa-ellipsis-vertical text-gray-400"></i>
             </button>
-        </div>
+        </div> 
+        -->
     </aside>
 </template>

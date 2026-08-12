@@ -1,0 +1,72 @@
+export const companies = [
+    {
+        name: 'Contact Cinko',
+        range: 'Jun 2025 - Presente',
+        role: 'Analista TI',
+        description: 'Análisis de procesos. Toma de requerimientos de cliente externo e internos. Desarrollo de nuevos sistemas y soporte a aplicativos de producción.',
+        type: 'Full-time',
+    },
+    {
+        name: 'Big Move Smart',
+        range: 'Ene 2022 - Mar 2025',
+        role: 'Desarrollador Back-End',
+        description: 'Soporte al equipo mobile. Integración con APIs externas y propias. Mejora y automatización de procesos logísticos para delivery.',
+        type: 'Full-time',
+    },
+    {
+        name: 'Laureate International Universities',
+        range: 'Feb 2018 - Ene 2022',
+        role: 'Programador Full Stack',
+        description: 'Encargado del ciclo de vida de los sistemas propios, para la optimización de procesos corporativos. Usando Azure AD para la gestión de acceso.',
+        type: 'Full-time',
+    },
+    {
+        name: 'Banco de México',
+        range: 'Oct 2017 - Ene 2018',
+        role: 'Analista de información',
+        description: 'Análisis y soporte a las diferentes entidades bancarias. Revisión de flujos de información de transacciones.',
+        type: 'Full-time',
+    },
+    {
+        name: 'Unisys de México, S.A. de C.V.',
+        range: 'Dic 2013 - Dic 2014',
+        role: 'Student Technical',
+        description: 'Monitoreo de servidores y sistemas basados en COBOL, así como el desarrollo y prueba de nuevas tecnologías.',
+        type: 'Full-time',
+    },
+    {
+        name: 'UNAM FCA CEDIGEC',
+        range: 'Sep 2020 - Dic 2025',
+        role: 'Desarrollador Web',
+        description: 'Soporte y desarrollo de programas universitarios y gubernamentales. Creación de sistemas y sitios web para procesos internos y administración de diplomados en línea mediante Moodle.',
+        type: 'Part-time',
+    },
+    {
+        name: 'Envíos Pronto',
+        range: 'Mar 2021 - Ene 2022',
+        role: 'Desarrollador Full Stack',
+        description: 'Análisis, implementación y mantenimiento de módulos del sistema, tanto en frontend, backend como base de datos.',
+        type: 'Part-time',
+    },
+    {
+        name: 'UNAM COUS',
+        range: 'Ene 2020 - Mar 2021',
+        role: 'Desarrollador Web',
+        description: 'Líder del área de desarrollo, encargado de la divulgación de proyectos sustentables mediante el desarrollo de sistemas y páginas web.',
+        type: 'Part-time',
+    },
+    {
+        name: 'Coordina Grupo Sagma',
+        range: 'Ago 2019 - Nov 2019',
+        role: 'Programador Full Stack',
+        description: 'Análisis y desarrollo de sistemas de auditoría y control interno, para la evaluación y visibilidad de avances de construcción en tramos carreteros en colaboración con CAPUFE.',
+        type: 'Part-time',
+    },
+    {
+        name: 'CNBV',
+        range: 'Jul 2016 - Sep 2016',
+        role: 'Desarrollador Web',
+        description: 'Análisis de datos para la elaboración de reportes, mediante el desarrollo de sistemas propietarios.',
+        type: 'Part-time',
+    }
+]

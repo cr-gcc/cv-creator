@@ -3,7 +3,42 @@
 
 @import "tailwindcss";
 
+@layer base {
+    :root {
+        /* Tema Claro (Light Theme) */
+        --theme-background: #ab9fa3;
+        --theme-surface: #3f030f;
+        --theme-emphasis: #2e0815;
+        --theme-selected: #fcfefb;
+        --theme-primary: #d8572e;
+        --theme-secondary: #df8d72;
+        --theme-primary-border: #7b2622;
+        --theme-divider: #591d2a;
+    }
+
+    /* El tema oscuro solo se activará si agregas la clase 'dark' a la etiqueta <html> */
+    :root.dark {
+        --theme-background: #1a1417;
+        --theme-surface: #140508;;
+        --theme-emphasis: #ab9fa3;
+        --theme-selected: #fcfefb;
+        --theme-primary: #d8572e;
+        --theme-secondary: #df8d72;
+        --theme-primary-border: #a83b2f;
+        --theme-divider: #591d2a;
+    }
+}
+
 @theme {
     --font-sans: "Nunito", sans-serif;
     --font-roboto-condensed: "Roboto Condensed", sans-serif;
+    /* Colores que se inyectan a Tailwind (apuntan a las variables dinámicas de arriba) */
+    --color-background: var(--theme-background);
+    --color-surface: var(--theme-surface);
+    --color-emphasis: var(--theme-emphasis);
+    --color-selected: var(--theme-selected);
+    --color-primary: var(--theme-primary);
+    --color-secondary: var(--theme-secondary);
+    --color-primary-border: var(--theme-primary-border);
+    --color-divider: var(--theme-divider);
 }

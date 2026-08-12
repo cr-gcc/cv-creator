@@ -3,11 +3,15 @@
 </script>
 
 <template>
-    <div id="main-layout">
-        <div class="min-h-screen flex flex-col">
+    <div id="main-layout" class="bg-background">
+        <div class="min-h-screen">
             <Sidebar />
-            <main class="flex-1">
-                <slot />
+            <main class="lg:pl-56">
+                <div class="px-4 py-6 sm:px-6 lg:px-8">
+                    <div class="mt-6">
+                        <slot />
+                    </div>
+                </div>
             </main>
         </div>
     </div>

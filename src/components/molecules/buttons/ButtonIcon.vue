@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import ButtonBase from '@/components/atmos/buttons/ButtonBase.vue'
+    import ButtonBase from '@/components/atoms/buttons/ButtonBase.vue'
     
     withDefaults(defineProps<{
         extraClassesButton?: string | string[];

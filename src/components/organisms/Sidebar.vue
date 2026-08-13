@@ -1,12 +1,28 @@
 <script setup lang="ts">
     import ButtonIcon from '@/components/molecules/buttons/ButtonIcon.vue'
     import ButtonIconText from '@/components/molecules/buttons/ButtonIconText.vue'
-    import { options } from '@/data/menu'
+    import LinkIconText from '@/components/molecules/links/LinkIconText.vue'
+    import DropdownIconText from '@/components/molecules/dropdowns/DropdownIconText.vue'
+    import ModalColors from '@/components/organisms/modals/ModalColors.vue'
+    import { useStyleCvStore } from '@/stores/useStyleCvStore'
+    import { fonts } from '@/data/fonts'
     import { ref } from 'vue'
 
-    const companyName = ref<string>(import.meta.env.VITE_APP_NAME_SHORT)
-    const sidebarOpen = ref<boolean>(true)
-    const isMinimized = ref<boolean>(false)
+    const isOpenModalColors = defineModel<boolean>({ default: false });
+    const styleCvStore = useStyleCvStore();
+    const companyName = ref<string>(import.meta.env.VITE_APP_NAME_SHORT);
+    const sidebarOpen = ref<boolean>(true);
+    const isMinimized = ref<boolean>(false);
+    
+    const changeTheme = () => {
+        alert('changeTheme');
+    }
+    const openModalColors = () => {
+        isOpenModalColors.value = true
+    }
+    const changeFont = (font: string) => {
+        styleCvStore.setFontFamily(font);
+    }
 </script>
 
 <template>
@@ -14,8 +30,8 @@
     <aside
         v-if="sidebarOpen"
         :class="[
-            'bg-surface m-4 rounded-2xl border border-primary-border sticky top-4 h-[calc(100vh-2rem)] shrink-0 z-40 flex flex-col transition-all duration-300',
-            isMinimized ? 'w-20' : 'w-48'
+            'bg-surface m-4 rounded-2xl border border-primary-border sticky top-4 h-fit min-h-[calc(100vh-2rem)] shrink-0 z-40 flex flex-col transition-all duration-300',
+            isMinimized ? 'w-20' : 'w-56'
         ]"
     >
         <!-- Logo -->
@@ -27,34 +43,95 @@
             </div>
             <ButtonIcon 
                 v-if="!isMinimized"
-                textColor="text-secondary" 
+                textColor="text-selected" 
                 textSize="text-2xl" 
                 icon="fa-solid fa-compress"
                 @button-clicked="isMinimized = true" 
             />
             <ButtonIcon 
                 v-else
-                textColor="text-secondary" 
+                textColor="text-selected" 
                 textSize="text-2xl" 
                 icon="fa-solid fa-expand"
                 @button-clicked="isMinimized = false" 
             />
         </div>
         <!-- Navigation -->
-        <nav class="flex flex-1 flex-col overflow-y-auto px-4 py-3">
+        <nav class="flex flex-1 flex-col px-4 py-3">
             <ul class="space-y-1 text-primary">
-                <li
-                    v-for="item in options"
-                    :key="item.name"
-                >
-                    <ButtonIconText
-                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
-                        :textColor="'text-primary'"
-                        :textSize="'text-md'"
-                        :icon="item.icon"
+                <li>
+                    <LinkIconText
+                        :to="{ name: 'home' }"
+                        :extraClassesLink="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        textColor="text-primary"
+                        textSize="text-md"
+                        icon="fa-solid fa-home"
                     >
                         <template #text>
-                            <span v-if="!isMinimized">{{ item.name }}</span>
+                            <span v-if="!isMinimized">Inicio</span>
+                        </template>
+                    </LinkIconText>
+                </li>
+                <li>   
+                    <ButtonIconText
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        textColor="text-primary"
+                        textSize="text-md"
+                        icon="fa-solid fa-circle-half-stroke"
+                        @click="changeTheme()"
+                    >
+                        <template #text>
+                            <span v-if="!isMinimized">Tema</span>
+                        </template>
+                    </ButtonIconText>
+                </li>
+                <li>   
+                    <ButtonIconText
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        textColor="text-primary"
+                        textSize="text-md"
+                        icon="fa-solid fa-palette"
+                        @click="openModalColors()"
+                    >
+                        <template #text>
+                            <span v-if="!isMinimized">Colores</span>
+                        </template>
+                    </ButtonIconText>
+                </li>
+                <li>
+                    <DropdownIconText
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        textColor="text-primary"
+                        textSize="text-md"
+                        icon="fa-solid fa-font"
+                        text="Fuentes"
+                        :isMinimized="isMinimized"
+                        :items="fonts"
+                        @item-clicked="(font) => changeFont(font)"
+                    />
+                </li>
+                <li>   
+                    <ButtonIconText
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        textColor="text-primary"
+                        textSize="text-md"
+                        icon="fa-solid fa-list"
+                        @click="openModalSections()"
+                    >
+                        <template #text>
+                            <span v-if="!isMinimized">Secciones</span>
+                        </template>
+                    </ButtonIconText>
+                </li>
+                <li>   
+                    <ButtonIconText
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        textColor="text-primary"
+                        textSize="text-md"
+                        icon="fa-solid fa-file-pdf"
+                    >
+                        <template #text>
+                            <span v-if="!isMinimized">Descargar</span>
                         </template>
                     </ButtonIconText>
                 </li>
@@ -84,4 +161,5 @@
         </div> 
         -->
     </aside>
+    <ModalColors v-model="isOpenModalColors" modalId="modal-colors"/>
 </template>

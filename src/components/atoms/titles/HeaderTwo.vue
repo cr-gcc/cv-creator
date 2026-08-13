@@ -9,12 +9,13 @@
     }>(), {
         title: 'Title'
     })
-
+    
+    const textColor = computed(() => `text-${styleCvStore.primaryColor}`)
     const borderColor = computed(() => `border-${styleCvStore.primaryColor}`)
 </script>
 
 <template>
-    <h2 :class="borderColor + ' mb-2 text-lg font-bold border-b-2 uppercase tracking-widest'">
+    <h2 :class="textColor + ' ' + borderColor + ' mb-2 text-lg font-bold border-b-2 uppercase tracking-widest'">
         {{ props.title }}
     </h2>
 </template>

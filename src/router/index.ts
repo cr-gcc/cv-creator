@@ -1,19 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from "@domains/auth/Login.vue";
-import Admin from "@domains/admin/Admin.vue";
+import Home from "@domains/admin/Home.vue";
 
 const base = import.meta.env.VITE_BASE_URL || "/";
 const routes = [
     {
         path: "/",
         alias: "/home",
-        component: Admin,
+        name: "home",
+        component: Home,
         meta: {
             layout: 'main',
         },
     },
     {
         path: "/login",
+        name: "login",
         component: Login,
         meta: {
             layout: 'blank',

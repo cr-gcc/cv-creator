@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import router from "@router";
 import App from "./App.vue";
+import "@/safelist";
 import "./style.css";
 
 const appName = import.meta.env.VITE_APP_NAME || 'TS';

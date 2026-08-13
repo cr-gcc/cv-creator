@@ -1,23 +1,22 @@
 <script setup lang="ts">
-import H2 from '@/components/atoms/titles/HeaderTwo.vue';
-import H3S from '@/components/atoms/titles/HeaderThreeSub.vue';
-import ListCompany from '@/components/molecules/list/ListCompany.vue'
-import ListSkills from '@/components/molecules/list/ListSkills.vue'
-import PInfo from '@/components/atoms/paragraphs/ParagraphInfo.vue'
-import { useStyleCvStore } from '@/stores/useStyleCvStore'
-import { info } from '@/data/info'
-import { computed } from 'vue'
+    import H2 from '@/components/atoms/titles/HeaderTwo.vue';
+    import H3S from '@/components/atoms/titles/HeaderThreeSub.vue';
+    import ListCompany from '@/components/molecules/list/ListCompany.vue'
+    import ListSkills from '@/components/molecules/list/ListSkills.vue'
+    import PInfo from '@/components/atoms/paragraphs/ParagraphInfo.vue'
+    import { useStyleCvStore } from '@/stores/useStyleCvStore'
+    import { info } from '@/data/info'
+    import { computed } from 'vue'
 
-const styleCvStore = useStyleCvStore()
+    const styleCvStore = useStyleCvStore()
 
-const currentFont = computed(() => styleCvStore.fontFamily)
-const bgColor = computed(() => `bg-${styleCvStore.primaryColor}`)
-
+    const currentFont = computed(() => styleCvStore.fontFamily)
+    const bgColor = computed(() => `bg-${styleCvStore.primaryColor}`)
 </script>
 
 <template>
     <div class="w-full">
-        <h1 class="text-emphasis text-5xl font-semibold leading-none">Diseño CV</h1>
+        <h1 class="text-primary-border text-5xl font-semibold leading-none">Diseño</h1>
     </div>
     <div class="w-full mb-4">
         <p class="flex w-full justify-end items-center gap-2">

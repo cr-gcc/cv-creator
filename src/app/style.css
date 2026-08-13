@@ -9,7 +9,7 @@
 
 @layer base {
     :root {
-        /* Tema Claro (Light Theme) */
+        /* Tema Claro (Light Theme) 
         --theme-background: #ab9fa3;
         --theme-surface: #3f030f;
         --theme-emphasis: #2e0815;
@@ -18,11 +18,21 @@
         --theme-secondary: #df8d72;
         --theme-primary-border: #7b2622;
         --theme-divider: #591d2a;
+        */
+        --theme-background: #9CA3AF;     
+        --theme-surface: #D1D5DB;         
+        --theme-emphasis: #4d0218;          
+        --theme-selected: #ffffff;        
+        --theme-primary: #9e000e;          
+        --theme-secondary: #82181a;        
+        --theme-primary-border: #460809;  
+        --theme-divider: #27272a;         
     }
 
     /* El tema oscuro solo se activará si agregas la clase 'dark' a la etiqueta <html> */
     :root.dark {
-        --theme-background: #1a1417;
+        /*
+        --theme-background: #1a1417;    
         --theme-surface: #140508;;
         --theme-emphasis: #ab9fa3;
         --theme-selected: #fcfefb;
@@ -30,6 +40,15 @@
         --theme-secondary: #df8d72;
         --theme-primary-border: #a83b2f;
         --theme-divider: #591d2a;
+        */
+        --theme-background: #18181B;        /* zinc-900 */
+        --theme-surface: #27272A;           /* zinc-800 */
+        --theme-emphasis: #FAFAFA;          /* zinc-50 */
+        --theme-selected: #3F3F46;          /* zinc-700 */
+        --theme-primary: #DC2626;            /* red-600 */
+        --theme-secondary: #B91C1C;          /* red-700 */
+        --theme-primary-border: #7F1D1D;    /* red-900 */
+        --theme-divider: #3F3F46;            /* zinc-700 */
     }
 }
 

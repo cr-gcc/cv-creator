@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useStyleCvStore = defineStore('styleCv', {
     state: () => ({
-        fontFamily: "Nunito",
+        fontFamily: "sans-serif",
         primaryColor: "sky-950",
         secondaryColor: "sky-900",
     }),

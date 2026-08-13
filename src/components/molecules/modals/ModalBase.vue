@@ -18,7 +18,7 @@
         modalId: 'modal',
         title: 'Title',
         titleSize: 'text-lg',
-        textColor: 'text-primary',
+        textColor: 'text-emphasis',
         urlRedirect: ''
     })
 
@@ -74,8 +74,8 @@
                 <div id="modal-footer" class="flex justify-end gap-1">
                     <slot name="modal-footer"></slot>
                     <ButtonBase 
-                        extraClassesButton="w-auto text-sm border border-gray-900 rounded-sm px-2 pb-0.2"
-                        buttonColor="bg-gray-800"
+                        extraClassesButton="w-auto text-sm border border-emphasis rounded-sm px-2 pb-0.2"
+                        buttonColor="bg-emphasis"
                         textColor="text-white"
                         @button-clicked="close()"
                     >

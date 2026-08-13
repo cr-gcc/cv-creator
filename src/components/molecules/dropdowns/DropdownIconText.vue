@@ -29,7 +29,6 @@
         if (!props.isMinimized) {
             isOpen.value = !isOpen.value
         } else {
-            // Optional behavior when minimized
             isOpen.value = !isOpen.value
         }
     }

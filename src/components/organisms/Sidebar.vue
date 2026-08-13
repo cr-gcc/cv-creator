@@ -30,7 +30,7 @@
     <aside
         v-if="sidebarOpen"
         :class="[
-            'bg-surface m-4 rounded-2xl border border-primary-border sticky top-4 h-fit min-h-[calc(100vh-2rem)] shrink-0 z-40 flex flex-col transition-all duration-300',
+            'bg-surface m-4 rounded-2xl border border-background sticky top-4 h-fit min-h-[calc(100vh-2rem)] shrink-0 z-40 flex flex-col transition-all duration-300',
             isMinimized ? 'w-20' : 'w-56'
         ]"
     >
@@ -43,14 +43,14 @@
             </div>
             <ButtonIcon 
                 v-if="!isMinimized"
-                textColor="text-selected" 
+                textColor="text-emphasis" 
                 textSize="text-2xl" 
                 icon="fa-solid fa-compress"
                 @button-clicked="isMinimized = true" 
             />
             <ButtonIcon 
                 v-else
-                textColor="text-selected" 
+                textColor="text-emphasis" 
                 textSize="text-2xl" 
                 icon="fa-solid fa-expand"
                 @button-clicked="isMinimized = false" 
@@ -62,7 +62,7 @@
                 <li>
                     <LinkIconText
                         :to="{ name: 'home' }"
-                        :extraClassesLink="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        :extraClassesLink="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
                         textColor="text-primary"
                         textSize="text-md"
                         icon="fa-solid fa-home"
@@ -74,7 +74,7 @@
                 </li>
                 <li>   
                     <ButtonIconText
-                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
                         textColor="text-primary"
                         textSize="text-md"
                         icon="fa-solid fa-circle-half-stroke"
@@ -87,7 +87,7 @@
                 </li>
                 <li>   
                     <ButtonIconText
-                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
                         textColor="text-primary"
                         textSize="text-md"
                         icon="fa-solid fa-palette"
@@ -100,7 +100,7 @@
                 </li>
                 <li>
                     <DropdownIconText
-                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
                         textColor="text-primary"
                         textSize="text-md"
                         icon="fa-solid fa-font"
@@ -110,22 +110,22 @@
                         @item-clicked="(font) => changeFont(font)"
                     />
                 </li>
-                <li>   
-                    <ButtonIconText
-                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                <li>
+                    <LinkIconText
+                        :to="{ name: 'sections' }"
+                        :extraClassesLink="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
                         textColor="text-primary"
                         textSize="text-md"
                         icon="fa-solid fa-list"
-                        @click="openModalSections()"
                     >
                         <template #text>
                             <span v-if="!isMinimized">Secciones</span>
                         </template>
-                    </ButtonIconText>
+                    </LinkIconText>
                 </li>
                 <li>   
                     <ButtonIconText
-                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all', isMinimized ? 'justify-center' : 'px-2']"
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
                         textColor="text-primary"
                         textSize="text-md"
                         icon="fa-solid fa-file-pdf"

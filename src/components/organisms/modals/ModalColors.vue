@@ -56,7 +56,7 @@
         modalSize="w-full sm:w-1/2 lg:w-1/3"
         title="Paleta de colores"
         titleSize="text-xl"
-        textColor="text-t-primary"
+        textColor="text-emphasis"
         @close="closeModal"
     >
         <template #modal-content>

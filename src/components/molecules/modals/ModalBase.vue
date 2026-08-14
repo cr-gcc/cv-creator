@@ -82,9 +82,9 @@
                 <div id="modal-footer" class="flex justify-end gap-1">
                     <slot name="modal-footer"></slot>
                     <ButtonBase 
-                        extraClassesButton="w-auto text-sm border border-emphasis rounded-sm px-2 pb-0.2"
-                        buttonColor="bg-emphasis"
-                        textColor="text-white"
+                        extraClassesButton="w-auto text-sm border rounded-sm px-2 pb-0.2"
+                        buttonColor="bg-selected"
+                        textColor="text-primary"
                         @button-clicked="close()"
                     >
                         <template #button-content>

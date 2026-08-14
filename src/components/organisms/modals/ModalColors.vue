@@ -60,7 +60,7 @@
         @close="closeModal"
     >
         <template #modal-content>
-            <p class="text-md leading-none text-justify mb-3">Seleccione uno de los colores de la paleta.</p>
+            <p class="text-md leading-none text-primary text-justify mb-3">Seleccione uno de los colores de la paleta.</p>
             <div class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-2">
                 <ButtonBase 
                     v-for="(color, index) in colors" 

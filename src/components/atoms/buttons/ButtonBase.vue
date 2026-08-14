@@ -1,10 +1,12 @@
 <script setup lang="ts">
     withDefaults(defineProps<{
+        type?: 'submit' | 'button' | 'reset';
         extraClassesButton?: string | string[];
         buttonColor?: string;
         textColor?: string;
         textSize?: string;
     }>(), {
+        type: 'button',
         extraClassesButton: '',
         buttonColor: '',
         textColor: 'text-primary',
@@ -20,6 +22,7 @@
 
 <template>
     <button 
+        :type="type"
         :class="[
             'flex items-center cursor-pointer',
             buttonColor,

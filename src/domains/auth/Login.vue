@@ -36,7 +36,8 @@
                     </div>
                     <div class="flex">
                         <ButtonBase 
-                            extraClassesButton="w-full flex justify-center items-center font-semibold rounded-lg py-1 px-2 transition-colors cursor-pointer hover:bg-primary/80"
+                            type="submit" 
+                            extraClassesButton="w-full flex justify-center items-center rounded-lg py-1 px-2 transition-colors cursor-pointer hover:bg-primary/80"
                             buttonColor="bg-primary"
                             textColor="text-white"
                             textSize="text-sm"

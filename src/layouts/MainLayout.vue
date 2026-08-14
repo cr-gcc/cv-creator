@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import Sidebar from '@/components/organisms/Sidebar.vue'
+    import ToastBase from '@/components/atoms/alerts/ToastBase.vue'
 </script>
 
 <template>
@@ -13,4 +14,5 @@
             </main>
         </div>
     </div>
+    <ToastBase />
 </template>

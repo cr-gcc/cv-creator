@@ -4,23 +4,40 @@
     import LinkIconText from '@/components/molecules/links/LinkIconText.vue'
     import DropdownIconText from '@/components/molecules/dropdowns/DropdownIconText.vue'
     import ModalColors from '@/components/organisms/modals/ModalColors.vue'
-    import { useStyleCvStore } from '@/stores/useStyleCvStore'
-    import { fonts } from '@/data/fonts'
     import { ref } from 'vue'
+    import { useRoute } from 'vue-router'
+    import { computed } from 'vue'
+    import { useStyleCvStore } from '@/stores/useStyleCvStore'
+    import { useToastStore } from '@/stores/useToastStore'
+    import { fonts } from '@/data/fonts'
 
     const isOpenModalColors = defineModel<boolean>({ default: false });
     const styleCvStore = useStyleCvStore();
+    const toastStore = useToastStore();
     const companyName = ref<string>(import.meta.env.VITE_APP_NAME_SHORT);
     const sidebarOpen = ref<boolean>(true);
     const isMinimized = ref<boolean>(false);
     
+    const route = useRoute()
+    const currentView = computed(() => route.name)
+
     const changeTheme = () => {
-        alert('changeTheme');
+        toastStore.show("Tema", "fa-solid fa-palette", "text-primary");
     }
+    const checkIsHomeView = (): boolean => {
+        if (currentView.value !== "home") {
+            toastStore.show("Acuda a la seccion de inicio para realizar los cambios", "fa-solid fa-triangle-exclamation", "text-secondary");
+            return false;
+        }
+        return true;
+    }
+
     const openModalColors = () => {
+        if (!checkIsHomeView()) return;
         isOpenModalColors.value = true
     }
     const changeFont = (font: string) => {
+        if (!checkIsHomeView()) return;
         styleCvStore.setFontFamily(font);
     }
 </script>

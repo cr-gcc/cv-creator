@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { ref } from 'vue'
+    import { onClickOutside } from '@vueuse/core'
     import ButtonIconText from '@/components/molecules/buttons/ButtonIconText.vue'
     
     const props = withDefaults(defineProps<{
@@ -24,6 +25,11 @@
 
     const emit = defineEmits(['item-clicked'])
     const isOpen = ref(false)
+    const dropdownRef = ref<HTMLElement | null>(null)
+
+    onClickOutside(dropdownRef, () => {
+        isOpen.value = false
+    })
 
     const toggleDropdown = () => {
         if (!props.isMinimized) {
@@ -39,7 +45,7 @@
 </script>
 
 <template>
-    <div class="w-full">
+    <div class="w-full" ref="dropdownRef">
         <ButtonIconText
             :extraClassesButton="extraClassesButton"
             :textColor="textColor"

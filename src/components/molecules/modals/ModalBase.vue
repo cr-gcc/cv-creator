@@ -2,10 +2,12 @@
     import ButtonBase from '@/components/atoms/buttons/ButtonBase.vue';
     import { ref, watch, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
+    import { onClickOutside } from '@vueuse/core';
 
     const router = useRouter();
     const isOpen = defineModel<boolean>({ default: false });
     const dialogRef = ref<HTMLDialogElement | null>(null);
+    const modalContentRef = ref<HTMLElement | null>(null);
     const props = withDefaults(defineProps<{
         modalSize?: string
         modalId: string
@@ -45,6 +47,12 @@
         emit('close');
     };
 
+    onClickOutside(modalContentRef, () => {
+        if (isOpen.value) {
+            close();
+        }
+    });
+
     onMounted(() => {
         if (isOpen.value && dialogRef.value && !dialogRef.value.open) {
             dialogRef.value.showModal();
@@ -61,7 +69,7 @@
             @close="close"
             :class="[modalSize, 'backdrop:bg-black/60 bg-transparent border-0 outline-none p-0 m-auto transition-all duration-300 sm:h-full md:h-auto']"
         >
-            <div class="bg-selected border border-border text-black px-3 py-1.5 rounded-sm flex flex-col">
+            <div ref="modalContentRef" class="bg-selected border border-border text-black px-3 py-1.5 rounded-sm flex flex-col">
                 <!-- Header -->
                 <div id="modal-header" class="flex items-center justify-between mb-2">
                     <span :class="[titleSize, textColor, 'font-medium']">{{ title }}</span>

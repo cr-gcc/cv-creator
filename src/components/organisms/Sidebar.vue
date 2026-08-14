@@ -4,12 +4,12 @@
     import LinkIconText from '@/components/molecules/links/LinkIconText.vue'
     import DropdownIconText from '@/components/molecules/dropdowns/DropdownIconText.vue'
     import ModalColors from '@/components/organisms/modals/ModalColors.vue'
-    import { ref } from 'vue'
+    import { ref, watchEffect, computed } from 'vue'
     import { useRoute } from 'vue-router'
-    import { computed } from 'vue'
     import { useStyleCvStore } from '@/stores/useStyleCvStore'
     import { useToastStore } from '@/stores/useToastStore'
     import { useThemeStore } from '@/stores/useThemeStore'
+    import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
     import { fonts } from '@/data/fonts'
 
     const isOpenModalColors = defineModel<boolean>({ default: false });
@@ -19,6 +19,23 @@
     const companyName = ref<string>(import.meta.env.VITE_APP_NAME_SHORT);
     const sidebarOpen = ref<boolean>(true);
     const isMinimized = ref<boolean>(false);
+
+    const breakpoints = useBreakpoints(breakpointsTailwind);
+    const isMobile = breakpoints.smaller('md');
+    const isTablet = breakpoints.between('md', 'lg');
+
+    watchEffect(() => {
+        if (isMobile.value) {
+            sidebarOpen.value = false;
+            isMinimized.value = false;
+        } else if (isTablet.value) {
+            sidebarOpen.value = true;
+            isMinimized.value = true;
+        } else {
+            sidebarOpen.value = true;
+            isMinimized.value = false;
+        }
+    });
     
     const route = useRoute()
     const currentView = computed(() => route.name)

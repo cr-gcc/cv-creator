@@ -4,10 +4,10 @@
     import ListCompany from '@/components/molecules/list/ListCompany.vue'
     import ListSkills from '@/components/molecules/list/ListSkills.vue'
     import PInfo from '@/components/atoms/paragraphs/ParagraphInfo.vue'
+    import { computed } from 'vue'
     import { useStyleCvStore } from '@/stores/useStyleCvStore'
     import { info } from '@/data/info'
-    import { computed } from 'vue'
-
+    
     const styleCvStore = useStyleCvStore()
 
     const currentFont = computed(() => styleCvStore.fontFamily)

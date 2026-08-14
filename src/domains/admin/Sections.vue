@@ -24,6 +24,7 @@
                         type="text"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -36,6 +37,7 @@
                         type="text"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -48,6 +50,7 @@
                         type="email"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -60,6 +63,7 @@
                         type="tel"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -72,6 +76,7 @@
                         type="text"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -84,6 +89,7 @@
                         type="text"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -96,6 +102,7 @@
                         type="text"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -108,6 +115,7 @@
                         type="text"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                         mb="mb-1"
                     />
@@ -119,6 +127,7 @@
                         placeholder="Perfil profesional"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                     />
                 </div>
@@ -129,6 +138,7 @@
                         placeholder="Formación Académica"
                         textSize="text-sm"
                         inputWidth="w-full"
+                        textColor="text-emphasis"
                         py="py-0.5"
                     />
                 </div>
@@ -145,6 +155,7 @@
                                 type="text"
                                 textSize="text-sm"
                                 inputWidth="w-full"
+                                textColor="text-emphasis"
                                 py="py-0.5"
                                 mb="mb-1"
                             />
@@ -157,6 +168,7 @@
                                 type="text"
                                 textSize="text-sm"
                                 inputWidth="w-full"
+                                textColor="text-emphasis"
                                 py="py-0.5"
                                 mb="mb-1"
                             />
@@ -169,6 +181,7 @@
                                 type="text"
                                 textSize="text-sm"
                                 inputWidth="w-full"
+                                textColor="text-emphasis"
                                 py="py-0.5"
                                 mb="mb-1"
                             />
@@ -181,6 +194,7 @@
                                 type="text"
                                 textSize="text-sm"
                                 inputWidth="w-full"
+                                textColor="text-emphasis"
                                 py="py-0.5"
                                 mb="mb-1"
                             />
@@ -192,6 +206,7 @@
                                 placeholder="Descripción"
                                 textSize="text-sm"
                                 inputWidth="w-full"
+                                textColor="text-emphasis"
                                 py="py-0.5"
                             />
                         </div>
@@ -212,6 +227,7 @@
                                 type="text"
                                 textSize="text-sm"
                                 inputWidth="w-full"
+                                textColor="text-emphasis"
                                 py="py-0.5"
                                 mb="mb-1"
                             />

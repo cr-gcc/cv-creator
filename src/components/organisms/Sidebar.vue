@@ -9,11 +9,13 @@
     import { computed } from 'vue'
     import { useStyleCvStore } from '@/stores/useStyleCvStore'
     import { useToastStore } from '@/stores/useToastStore'
+    import { useThemeStore } from '@/stores/useThemeStore'
     import { fonts } from '@/data/fonts'
 
     const isOpenModalColors = defineModel<boolean>({ default: false });
     const styleCvStore = useStyleCvStore();
     const toastStore = useToastStore();
+    const themeStore = useThemeStore();
     const companyName = ref<string>(import.meta.env.VITE_APP_NAME_SHORT);
     const sidebarOpen = ref<boolean>(true);
     const isMinimized = ref<boolean>(false);
@@ -22,11 +24,11 @@
     const currentView = computed(() => route.name)
 
     const changeTheme = () => {
-        toastStore.show("Tema", "fa-solid fa-palette", "text-primary");
+        themeStore.toggleTheme();
     }
     const checkIsHomeView = (): boolean => {
         if (currentView.value !== "home") {
-            toastStore.show("Acuda a la seccion de inicio para realizar los cambios", "fa-solid fa-triangle-exclamation", "text-secondary");
+            toastStore.show("Acuda a la seccion de inicio para realizar los cambios", "fa-solid fa-triangle-exclamation", "text-emphasis");
             return false;
         }
         return true;
@@ -94,7 +96,7 @@
                         :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
                         textColor="text-primary"
                         textSize="text-md"
-                        icon="fa-solid fa-circle-half-stroke"
+                        :icon="themeStore.isDark ? 'fa-solid fa-moon' : 'fa-solid fa-circle'"
                         @click="changeTheme()"
                     >
                         <template #text>

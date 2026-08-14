@@ -7,10 +7,9 @@
         inputWidth?: string,
         py?: string,
         mb?: string,
-        textColor?: string,
+        textColor?: string
     }>(), {
         inputId: '',
-        type: 'text',
         placeholder: '',
         textSize: 'text-sm',
         inputWidth: 'w-full',
@@ -21,10 +20,9 @@
 </script>
 
 <template>
-    <input 
+    <textarea 
         :id="inputId" 
-        :type="type" 
         :placeholder="placeholder"
-        :class="`${textSize} ${inputWidth} ${textColor} ${py} ${mb} bg-background border border-primary rounded-lg px-2 font-semibold focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all`"
-    >
+        :class="`${textSize} ${inputWidth} ${py} ${mb} ${textColor} field-sizing-content bg-background border border-primary rounded-lg px-2 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all`"
+    />
 </template>

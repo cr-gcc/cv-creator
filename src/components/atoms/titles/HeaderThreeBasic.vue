@@ -1,13 +1,17 @@
 <script setup lang="ts">
     const props = withDefaults(defineProps<{
         name: string;
+        textSize?: string;
+        textColor?: string;
     }>(), {
-        name: 'Name'
+        name: 'Name',
+        textSize: 'text-sm',
+        textColor: 'text-dark'
     })
 </script>
 
 <template>
-    <h3 class="inline font-semibold text-sm">
+    <h3 :class="`${textSize} ${textColor} font-semibold inline`">
         {{ props.name }}
     </h3>
 </template>

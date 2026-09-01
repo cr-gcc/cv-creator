@@ -9,11 +9,10 @@
 </script>
 
 <template>
-     <ul :class="'list-disc list-inside pl-0 '+marker">
+    <ul :class="'list-disc list-inside pl-0 '+marker">
         <li class="mb-1" v-for="(skill, index) in info.skills" :key="index">
             <H3B :name="skill.name" />
             <p class="text-sm leading-tight" v-for="(description, index) in skill.description" :key="index">{{ description }}</p>
         </li>
     </ul>
-
 </template>

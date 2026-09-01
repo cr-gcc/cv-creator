@@ -11,6 +11,7 @@
     import { useThemeStore } from '@/stores/useThemeStore'
     import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
     import { fonts } from '@/data/fonts'
+    import { usePdfExport } from '@/composables/usePdfExport'
 
     const isOpenModalColors = defineModel<boolean>({ default: false });
     const styleCvStore = useStyleCvStore();
@@ -59,6 +60,8 @@
         if (!checkIsHomeView()) return;
         styleCvStore.setFontFamily(font);
     }
+
+    const { isGenerating, downloadPDF } = usePdfExport()
 </script>
 
 <template>
@@ -161,13 +164,15 @@
                 </li>
                 <li>   
                     <ButtonIconText
-                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2']"
+                        :extraClassesButton="['w-full group gap-2 rounded-lg py-2 font-medium transition-all hover:bg-black/10', isMinimized ? 'justify-center' : 'px-2', isGenerating ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer']"
                         textColor="text-primary"
                         textSize="text-md"
-                        icon="fa-solid fa-file-pdf"
+                        :icon="isGenerating ? 'fa-solid fa-spinner fa-spin' : 'fa-solid fa-file-pdf'"
+                        :disabled="isGenerating"
+                        @click="downloadPDF"
                     >
                         <template #text>
-                            <span v-if="!isMinimized">Descargar</span>
+                            <span v-if="!isMinimized">{{ isGenerating ? 'Generando...' : 'Descargar' }}</span>
                         </template>
                     </ButtonIconText>
                 </li>

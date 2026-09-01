@@ -7,7 +7,7 @@
     import { computed } from 'vue'
     import { useStyleCvStore } from '@/stores/useStyleCvStore'
     import { info } from '@/data/info'
-    
+
     const styleCvStore = useStyleCvStore()
 
     const currentFont = computed(() => styleCvStore.fontFamily)
@@ -26,7 +26,7 @@
             </span>
         </p>
     </div>
-    <div class=" mx-auto bg-gray-100 text-gray-900" :style="{ fontFamily: currentFont, width: '794px', height: '1123px' }">
+    <div id="cv-preview" class="mx-auto bg-gray-100 text-gray-900" :style="{ fontFamily: currentFont, width: '794px', height: '1123px' }">
         <!-- Header -->
         <div :class="bgColor + ' text-white px-6 pt-6 pb-2 items-center'">
             <div class="grid grid-cols-3">
@@ -37,7 +37,9 @@
                     <p v-for="(personal, index) in info.personal" :key="index"><i :class="personal.icon + ' mr-2'"></i>{{ personal.data }}</p>
                 </div>
                 <div class="col-span-3 mt-2 border-t-2 border-white"></div>
-                <p class="py-1 text-lg tracking-widest">{{ info.role }}</p>
+                <div class="col-span-3 py-1 text-lg tracking-widest">
+                    <p>{{ info.role }}</p>
+                </div>
             </div>
         </div>
         <!-- Info -->

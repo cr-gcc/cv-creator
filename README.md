@@ -40,6 +40,8 @@ Crear un currículum atractivo y profesional es un proceso frustrante: herramien
 | 🌙 **Tema claro/oscuro** | Toggle de tema persistente gracias a `@vueuse/core` |
 | 📋 **Editor de secciones** | Formulario estructurado para: datos personales, perfil profesional, experiencia laboral (full-time y freelance), formación académica, habilidades, certificados e información adicional |
 | 📐 **Vista previa A4** | El CV se renderiza en tiempo real a tamaño de papel (794×1123px), listo para impresión o PDF |
+| 📥 **Exportación PDF nativa** | Descarga tu CV como PDF de alta resolución (2× escala) usando `html2canvas-pro` + `jsPDF`, sin dependencias de servidor |
+| 🔐 **Autenticación** | Vista de Login con diseño de pantalla completa y banner personalizable |
 | 📱 **Diseño responsive** | Sidebar adaptable: colapsado en mobile, minimizado en tablet, completo en desktop |
 | 💾 **Estado persistente** | La configuración de estilos se mantiene entre sesiones con `pinia-plugin-persistedstate` |
 
@@ -57,15 +59,16 @@ TailwindCSS 4  →  Utility-first CSS con safelist dinámica
 Pinia          →  State management modular y reactivo
 Vue Router 5   →  Navegación SPA con named routes
 VueUse         →  Composables (breakpoints, dark mode, toggle)
+Axios          →  Cliente HTTP para integraciones futuras
 ```
 
 ### Patrones de Diseño
 
 ```
 Atomic Design  →  atoms / molecules / organisms
-Domain-Driven  →  src/domains/admin/ para vistas de negocio
+Domain-Driven  →  src/domains/admin/ · src/domains/auth/
 Store Pattern  →  useStyleCvStore · useThemeStore · useToastStore
-Composables    →  lógica reutilizable desacoplada de la UI
+Composables    →  lógica reutilizable (usePdfExport)
 ```
 
 ---
@@ -75,24 +78,50 @@ Composables    →  lógica reutilizable desacoplada de la UI
 ```
 cv-creator/
 ├── src/
+│   ├── app/
+│   │   ├── App.vue         # Componente raíz
+│   │   ├── main.ts         # Punto de entrada
+│   │   └── style.css       # Estilos globales
 │   ├── components/
-│   │   ├── atoms/          # Botones, inputs, títulos, párrafos, loaders
-│   │   ├── molecules/      # Dropdowns, modales base, listas, links
-│   │   └── organisms/      # Sidebar, ModalColors
+│   │   ├── atoms/
+│   │   │   ├── alerts/     # Componentes de alerta
+│   │   │   ├── buttons/    # Botones base
+│   │   │   ├── inputs/     # Inputs básicos
+│   │   │   ├── labels/     # Etiquetas
+│   │   │   ├── links/      # Links atómicos
+│   │   │   ├── loaders/    # ProgressBar y spinners
+│   │   │   ├── paragraphs/ # Textos de párrafo
+│   │   │   └── titles/     # Títulos y encabezados
+│   │   ├── molecules/
+│   │   │   ├── buttons/    # Botones compuestos
+│   │   │   ├── dropdowns/  # Selectores desplegables
+│   │   │   ├── inputs/     # LabelInput y campos compuestos
+│   │   │   ├── links/      # Links con icono u otros
+│   │   │   ├── list/       # Listas moleculares
+│   │   │   └── modals/     # Modales base
+│   │   └── organisms/
+│   │       ├── Sidebar.vue         # Sidebar principal responsive
+│   │       └── modals/
+│   │           └── ModalColors.vue # Selector de paleta de colores
+│   ├── composables/
+│   │   └── usePdfExport.ts   # Exportación del CV a PDF (html2canvas-pro + jsPDF)
 │   ├── domains/
-│   │   └── admin/
-│   │       ├── Home.vue    # Vista principal con preview A4 del CV
-│   │       └── Sections.vue # Editor de secciones del CV
+│   │   ├── admin/
+│   │   │   ├── Home.vue      # Vista principal con preview A4 del CV
+│   │   │   └── Sections.vue  # Editor de secciones del CV
+│   │   └── auth/
+│   │       └── Login.vue     # Vista de inicio de sesión
 │   ├── stores/
-│   │   ├── useStyleCvStore.ts   # Color y fuente del CV (reactivo)
+│   │   ├── useStyleCvStore.ts   # Color y fuente del CV (reactivo + persistido)
 │   │   ├── useThemeStore.ts     # Dark/Light mode
-│   │   └── useToastStore.ts     # Notificaciones
+│   │   └── useToastStore.ts     # Notificaciones toast
 │   ├── data/
-│   │   ├── info.ts         # Datos personales/profesionales del CV
-│   │   ├── companies.ts    # Historial de experiencia laboral
-│   │   └── fonts.ts        # Fuentes disponibles
-│   ├── layouts/            # Layout principal con Sidebar
-│   └── router/             # Configuración de rutas
+│   │   ├── info.ts          # Datos personales/profesionales del CV
+│   │   ├── companies.ts     # Historial de experiencia laboral
+│   │   └── fonts.ts         # Fuentes disponibles
+│   ├── layouts/             # Layout principal con Sidebar
+│   ├── router/              # Configuración de rutas
+│   └── safelist.ts          # Safelist de clases TailwindCSS dinámicas
 ├── index.html
 ├── vite.config.ts
 └── package.json
@@ -143,12 +172,15 @@ npm run preview
 2. Sidebar       →  Cambia color, fuente y tema sin recargar la página
 3. Secciones     →  Edita cada campo del CV desde el panel de Secciones
 4. Preview       →  Los cambios se reflejan instantáneamente en el diseño
-5. Descarga      →  Exporta tu CV como PDF listo para enviar
+5. Descarga      →  Exporta tu CV como PDF de alta resolución con un solo clic
 ```
 
 ---
 
 ## 🧩 Decisiones Técnicas Destacadas
+
+**¿Por qué `usePdfExport` como composable?**  
+La lógica de exportación está completamente desacoplada de la UI. Usa `html2canvas-pro` (fork moderno de `html2canvas` con mejor soporte CSS) para capturar el elemento `#cv-preview` a escala 2× y `jsPDF` para generar el PDF con las dimensiones exactas de A4 (794×1123px). El composable expone `isGenerating` como ref reactivo para mostrar estados de carga en la UI.
 
 **¿Por qué Pinia con persistedstate?**  
 El color y la fuente elegidos se guardan en `localStorage` automáticamente. Al recargar la página, el CV mantiene el último diseño configurado sin ningún paso extra del usuario.
@@ -157,7 +189,7 @@ El color y la fuente elegidos se guardan en `localStorage` automáticamente. Al 
 TailwindCSS purga las clases no usadas en build. Como los colores del CV se generan dinámicamente (`bg-${color}-950`), se mantiene una safelist que garantiza que todas las variantes de color estén disponibles en producción.
 
 **¿Por qué Atomic Design?**  
-La UI está construida sobre átomos (`ButtonBase`, `Input`, `HeaderTwo`…) compuestos en moléculas y organismos, lo que permite modificar el look & feel de forma centralizada y escalable.
+La UI está construida sobre átomos (`ButtonBase`, `Input`, `ProgressBar`…) compuestos en moléculas y organismos, lo que permite modificar el look & feel de forma centralizada y escalable. Actualmente el sistema cuenta con 8 categorías de átomos y 6 de moléculas.
 
 **¿Por qué VueUse para breakpoints?**  
 El sidebar detecta si el usuario está en mobile, tablet o desktop con `breakpointsTailwind` y ajusta su estado automáticamente, sin media queries manuales.
@@ -176,17 +208,22 @@ El sidebar detecta si el usuario está en mobile, tablet o desktop con `breakpoi
 | `tailwindcss` | ^4.3 | Estilos utility-first |
 | `vite` | ^8.2 | Bundler y dev server |
 | `typescript` | ~6.0 | Tipado estático |
+| `html2canvas-pro` | ^2.4 | Captura del DOM como imagen |
+| `jspdf` | ^4.2 | Generación de PDF en el cliente |
+| `axios` | ^1.19 | Cliente HTTP |
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] Exportación a PDF nativa (html2pdf / puppeteer)
+- [x] Exportación a PDF nativa (html2canvas-pro + jsPDF)
+- [x] Vista de autenticación (Login)
 - [ ] Múltiples plantillas de CV
 - [ ] Drag & drop para reordenar secciones
 - [ ] Guardado en la nube (Firebase / Supabase)
 - [ ] Modo multi-idioma (i18n)
 - [ ] Compartir CV con link único
+- [ ] Integración completa de autenticación
 
 ---
 
